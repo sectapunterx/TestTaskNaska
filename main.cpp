@@ -8,7 +8,7 @@
 #include <tuple>
 #include <fstream>
 
-// Constants for random generation
+// Константы для генерации случайных данных
 const int MIN_ROWS = 100;
 const int MAX_ROW_LENGTH = 1000;
 const int MIN_ROW_LENGTH = 1;
@@ -24,7 +24,7 @@ struct Trade {
 
 using TradeRow = std::vector<Trade>;
 
-// Function to generate a random trade row
+// Генерация случайного ряда сделок
 TradeRow generate_random_row(std::mt19937 &rng) {
   std::uniform_int_distribution<int> length_dist(MIN_ROW_LENGTH, MAX_ROW_LENGTH);
   std::uniform_real_distribution<double> profit_dist(MIN_PROFIT, MAX_PROFIT);
@@ -38,10 +38,9 @@ TradeRow generate_random_row(std::mt19937 &rng) {
   return row;
 }
 
-// Function to calculate metrics for a trade row
 std::tuple<double, double, double, double> calculate_metrics(const TradeRow &row) {
   double max_drawdown = 0;
-  double max_drawdown_temp = 0;
+  double max_drawdown_temp = 0; //бесполезная?
   double max_drawdown_peak = 0;
   double total_duration = 0;
   double max_duration = 0;
@@ -79,7 +78,7 @@ int classify_strategy(double profit, double max_drawdown, double average_duratio
 }
 
 int main(int argc, char* argv[]) {
-  // Check for the correct number of arguments
+  // Проверка количества аргументов
   if (argc != 2) {
     std::cerr << "Usage: " << argv[0] << " <output_file_path>" << std::endl;
     return 1;
@@ -108,7 +107,6 @@ int main(int argc, char* argv[]) {
     }
     file << "\n";
   }
-  file.close();
 
   std::vector<int> classifications(MIN_ROWS);
   for (int i = 0; i < MIN_ROWS; ++i) {
