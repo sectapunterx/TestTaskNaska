@@ -1,2 +1,5 @@
-g++ main.cpp -o main
-.\main.exe G:\data.csv
+Компиляция: `g++ main.cpp -o main`
+
+Запуск: `.\main.exe \path\data.csv`
+
+data.csv - файл, который выдает программа для передачи в Python скрипт, который произведет анализ и построит графики
